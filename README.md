@@ -1,4 +1,4 @@
-# Shool-Management-System-using-OOP
+// Shool-Management-System-using-OOP
 #include <iostream>
 #include <string>
 
