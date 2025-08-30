@@ -1,151 +1,35 @@
-// Shool-Management-System-using-OOP
-#include <iostream>
-#include <string>
+📌 School Management System (C++)
 
-using namespace std;
+This project is a console-based School Management System built in C++, designed to manage and organize essential school records. It provides a simple yet effective way to store and display information about students, teachers, and staff members.
 
-// Base class for the school
-class School {
-public:
-    virtual void insert() = 0;
-    virtual void display() const = 0;
-};
+✨ Features
 
-// Derived class for student information
-class Student : public School {
-public:
-    int id;
-    string name;
-    int age;
+Add Student Records: Enter and store student ID, name, and age.
 
-    void insert() override {
-        cout << "Enter student ID: ";
-        cin >> id;
-        cin.ignore(); // Ignore leftover newline
-        cout << "Enter student name: ";
-        getline(cin, name);
-        cout << "Enter student age: ";
-        cin >> age;
-        cin.ignore(); // Ignore leftover newline
-    }
+Add Teacher Records: Manage teacher ID, name, and subject specialization.
 
-    void display() const override {
-        cout << "Student Record:\n";
-        cout << "ID: " << id << "\nName: " << name << "\nAge: " << age << endl;
-    }
-};
+Add Staff Records: Maintain staff ID, name, and job position.
 
-// Derived class for teacher information
-class Teacher : public School {
-public:
-    int id;
-    string name;
-    string subject;
+Display Records: View all stored records with clear formatting.
 
-    void insert() override {
-        cout << "Enter teacher ID: ";
-        cin >> id;
-        cin.ignore(); // Ignore leftover newline
-        cout << "Enter teacher name: ";
-        getline(cin, name);
-        cout << "Enter subject: ";
-        getline(cin, subject);
-    }
+Menu-Driven System: Easy-to-use interface with options to insert or display data.
 
-    void display() const override {
-        cout << "Teacher Record:\n";
-        cout << "ID: " << id << "\nName: " << name << "\nSubject: " << subject << endl;
-    }
-};
+Dynamic Memory Management: Uses polymorphism and pointers for efficient record handling.
 
-// Derived class for staff information
-class Staff : public School {
-public:
-    int id;
-    string name;
-    string position;
+🛠️ Technical Details
 
-    void insert() override {
-        cout << "Enter staff ID: ";
-        cin >> id;
-        cin.ignore(); // Ignore leftover newline
-        cout << "Enter staff name: ";
-        getline(cin, name);
-        cout << "Enter position: ";
-        getline(cin, position);
-    }
+Implemented using Object-Oriented Programming (OOP) concepts such as inheritance, polymorphism, and virtual functions.
 
-    void display() const override {
-        cout << "Staff Record:\n";
-        cout << "ID: " << id << "\nName: " << name << "\nPosition: " << position << endl;
-    }
-};
+Base class: School (abstract class with virtual methods).
 
-// Main function
-int main() {
-    const int MAX_RECORDS = 100;
-    School* records[MAX_RECORDS];
-    int recordCount = 0;
-    int choice;
+Derived classes: Student, Teacher, and Staff, each handling specific attributes and methods.
 
-    cout << "School Management System\n";
-    do {
-        cout << "\n1. Add Student\n2. Add Teacher\n3. Add Staff\n4. Display All\n5. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
+Stores records dynamically in an array of pointers (School* records[MAX_RECORDS]).
 
-        School* record = nullptr;
-        switch (choice) {
-            case 1:
-                if (recordCount < MAX_RECORDS) {
-                    record = new Student();
-                } else {
-                    cout << "No more space to add records.\n";
-                }
-                break;
-            case 2:
-                if (recordCount < MAX_RECORDS) {
-                    record = new Teacher();
-                } else {
-                    cout << "No more space to add records.\n";
-                }
-                break;
-            case 3:
-                if (recordCount < MAX_RECORDS) {
-                    record = new Staff();
-                } else {
-                    cout << "No more space to add records.\n";
-                }
-                break;
-            case 4:
-                if (recordCount == 0) {
-                    cout << "No records to display.\n";
-                } else {
-                    for (int i = 0; i < recordCount; ++i) {
-                        records[i]->display();
-                        cout << "--------------------------------\n";
-                    }
-                }
-                break;
-            case 5:
-                cout << "Exiting...\n";
-                break;
-            default:
-                cout << "Invalid choice! Please try again.\n";
-                break;
-        }
+Supports up to 100 entries in one run.
 
-        if (record && recordCount < MAX_RECORDS) {
-            record->insert();
-            records[recordCount++] = record;
-        }
+Includes memory cleanup to prevent memory leaks.
 
-    } while (choice != 5);
+🎯 Purpose
 
-    // Clean up dynamically allocated memory
-    for (int i = 0; i < recordCount; ++i) {
-        delete records[i];
-    }
-
-    return 0;
-}
+This project is ideal for beginners learning C++ and OOP principles. It demonstrates how to design a structured system using inheritance, abstract classes, and polymorphism, while solving a practical real-world problem.
